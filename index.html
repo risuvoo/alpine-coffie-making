@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./assets/js/tailwindcss.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fun': {
+                            '50': '#72FFCB',
+                            '100': '#56FFC1',
+                            '200': '#1EFFAC',
+                            '300': '#00E591',
+                            '400': '#00AD6D',
+                            '500': '#00754A',
+                            '600': '#005C3A',
+                            '700': '#00422A',
+                            '800': '#00291A',
+                            '900': '#000F09'
+                        },
+                        'white-green':'#D4E9E2',
+                        'p-color':"#00000094"
+                    }
+                }
+            }
+        }
+    </script>
+    <script defer src="./assets/js/alpine.js" type="text/javascript"></script>
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('selectSize', {
+                size: 'short',
+                setSize(data) {
+                    this.size = data;
+                    console.log(this.size)
+                }
+
+            });
+            Alpine.store('openMilkOpt', {
+                open:false,
+                options:['2% Milk','Heavy Cream','Nonfat Milk','Coconut'],
+                name: '2% Milk',
+                setOption(data) {
+                    this.name = data;
+                    this.open=false;
+                }
+
+            });
+            Alpine.store('openFoamOpt', {
+                open:false,
+                options:['Warm','Steamed Hot','Nonfat Milk','Extra Hot'],
+                name: `Warm`,
+                setOption(data) {
+                    this.name = data;
+                    this.open=false;
+                }
+
+            });
+            Alpine.store('openTempOpt', {
+                open:false,
+                options:['Extra Milk Foam','Light Milk Foam','No Milk Foam','Milk Foam'],
+                name: `Warm`,
+                setOption(data) {
+                    this.name = data;
+                    this.open=false;
+                }
+
+            })
+        })
+    </script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+</head>
+<body>
+    <div  class="main-wrapper w-full h-screen overflow-hidden antialiased">
+        <div class="pl-[131px] py-10">
+            <section class="w-full">
+                <div class="content-wrapper w-full flex">
+                    <div class="size-option-wrapper w-1/4 mr-[88px]">
+                        <h1 class="text-[24px] font-bold text-fun-900">Size options</h1>
+                        <div class="w-full h-1 bg-white-green mt-5 mb-10"></div>
+
+                        <div class="select-cup-wrapper mb-10 w-full flex justify-center">
+                            <div class="relative">
+                                <div class="flex space-x-7 items-center ">
+                                    <div x-data @click="$store.selectSize.setSize('short')" class="cup-item cursor-pointer"
+                                        :class="$store.selectSize.size==='short' && 'active'">
+                                        <div class="icon flex justify-center">
+                                            <template x-if="$store.selectSize.size==='short' ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path
+                                                        d="M2.91 16 2 19h20l-.91-3H2.91ZM21 19H3l2.229 18.035A1.1 1.1 0 0 0 6.32 38h12.102a1.1 1.1 0 0 0 1.096-1.01L21 19Z"
+                                                        fill="#fff" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.909 15.45a.55.55 0 0 0-.526.39l-.91 3a.55.55 0 0 0 .527.71h.514l2.169 17.552A1.65 1.65 0 0 0 6.32 38.55h12.102a1.65 1.65 0 0 0 1.644-1.515l1.44-17.485H22a.55.55 0 0 0 .526-.71l-.909-3a.55.55 0 0 0-.526-.39H2.909Zm17.494 4.1H3.623l2.151 17.417a.55.55 0 0 0 .546.483h12.102a.55.55 0 0 0 .548-.505l1.433-17.395Zm.856-1.1-.576-1.9H3.317l-.576 1.9H21.26Z"
+                                                        fill="#000" />
+                                                    <circle cx="12" cy="27" r="4.45" fill="#00754A" stroke="#000" stroke-width="1.1" />
+                                                </svg>
+                                                
+                                            </template>
+                                            <template x-if="$store.selectSize.size!=='short' ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.383 15.84a.55.55 0 0 1 .526-.39h18.182a.55.55 0 0 1 .526.39l.91 3a.55.55 0 0 1-.527.71h-.494l-1.44 17.485a1.65 1.65 0 0 1-1.644 1.515H6.32a1.65 1.65 0 0 1-1.637-1.448L2.513 19.55H2a.55.55 0 0 1-.526-.71l.909-3Zm1.24 3.71h16.78L18.97 36.945a.55.55 0 0 1-.548.505H6.32a.55.55 0 0 1-.546-.483L3.622 19.55Zm17.06-3 .576 1.9H2.74l.576-1.9h17.366ZM15.9 27a3.9 3.9 0 1 1-7.8 0 3.9 3.9 0 0 1 7.8 0Zm1.1 0a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"
+                                                        fill="#000" fill-opacity=".58" />
+                                                </svg>
+                                            </template>
+                                        </div>
+                                        <p class="text-gray-900 text-base font-bold mt-2.5 text-center">Short</p>
+                                        <p class="text-base text-gray-900 leading-none text-center">8 fl oz</p>
+                                    </div>
+                                    <div x-data @click="$store.selectSize.setSize('tall')" class="cup-item cursor-pointer"
+                                        :class="$store.selectSize.size==='tall' && 'active'" class="item">
+                                        <div class="icon flex justify-center">
+                                            <template x-if="$store.selectSize.size==='tall'">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path
+                                                        d="M2.91 12 2 15h20l-.91-3H2.91ZM21 15H3l2.247 22.012A1.1 1.1 0 0 0 6.34 38h12.066a1.1 1.1 0 0 0 1.098-1.025L21 15Z"
+                                                        fill="#fff" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.909 11.45a.55.55 0 0 0-.526.39l-.91 3a.55.55 0 0 0 .527.71h.503L4.7 37.068A1.65 1.65 0 0 0 6.34 38.55h12.066a1.65 1.65 0 0 0 1.646-1.538l1.46-21.462H22a.55.55 0 0 0 .526-.71l-.909-3a.55.55 0 0 0-.526-.39H2.909Zm17.502 4.1H3.61l2.185 21.406a.55.55 0 0 0 .547.494h12.066a.55.55 0 0 0 .549-.513L20.41 15.55Zm.848-1.1-.576-1.9H3.317l-.576 1.9H21.26Z"
+                                                        fill="#000" />
+                                                    <circle cx="12" cy="24" r="4.45" fill="#00754A" stroke="#000" stroke-width="1.1" />
+                                                </svg>
+                                                
+                                            </template>
+                                            
+                                            <template x-if="$store.selectSize.size!=='tall'">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.383 11.84a.55.55 0 0 1 .526-.39h18.182a.55.55 0 0 1 .526.39l.91 3a.55.55 0 0 1-.527.71h-.486l-1.46 21.462a1.65 1.65 0 0 1-1.647 1.538H6.341A1.65 1.65 0 0 1 4.7 37.068L2.503 15.55H2a.55.55 0 0 1-.526-.71l.909-3Zm1.226 3.71H20.41l-1.455 21.387a.55.55 0 0 1-.549.513H6.341a.55.55 0 0 1-.547-.494L3.609 15.55Zm17.074-3 .576 1.9H2.74l.576-1.9h17.366ZM15.9 24a3.9 3.9 0 1 1-7.8 0 3.9 3.9 0 0 1 7.8 0Zm1.1 0a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"
+                                                        fill="#000" fill-opacity=".58" />
+                                                </svg>
+                                            </template>
+                                            
+                                            
+                                        </div>
+                                        <p class="text-gray-900 text-base font-bold mt-2.5 text-center">Tall</p>
+                                        <p class="text-base text-gray-900 leading-none text-center">12 fl oz</p>
+                                    </div>
+                                    <div x-data @click="$store.selectSize.setSize('grande')" class="cup-item cursor-pointer"
+                                        :class="$store.selectSize.size==='grande' && 'active'" class="item">
+                                        <div class="icon flex justify-center">
+                                            <template x-if="$store.selectSize.size==='grande'">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path
+                                                        d="M2.91 8 2 11h20l-.91-3H2.91ZM21 11H3l2.26 25.995A1.1 1.1 0 0 0 6.356 38h12.04a1.1 1.1 0 0 0 1.099-1.036L21 11Z"
+                                                        fill="#fff" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.909 7.45a.55.55 0 0 0-.526.39l-.91 3a.55.55 0 0 0 .527.71h.496l2.216 25.493a1.65 1.65 0 0 0 1.644 1.507h12.04a1.65 1.65 0 0 0 1.648-1.555l1.475-25.445H22a.55.55 0 0 0 .526-.71l-.909-3a.55.55 0 0 0-.526-.39H2.909Zm17.508 4.1H3.6l2.208 25.398a.55.55 0 0 0 .548.502h12.04a.55.55 0 0 0 .55-.518l1.471-25.382Zm.842-1.1-.576-1.9H3.317l-.576 1.9H21.26Z"
+                                                        fill="#000" />
+                                                    <circle cx="12" cy="22.5" r="4.95" fill="#00754A" stroke="#000" stroke-width="1.1" />
+                                                </svg>
+                                                
+                                            </template>
+                                            <template x-if="$store.selectSize.size!=='grande'">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.383 7.84a.55.55 0 0 1 .526-.39h18.182a.55.55 0 0 1 .526.39l.91 3a.55.55 0 0 1-.527.71h-.481l-1.475 25.445a1.65 1.65 0 0 1-1.647 1.555H6.357a1.65 1.65 0 0 1-1.645-1.507L2.496 11.55H2a.55.55 0 0 1-.526-.71l.909-3ZM3.6 11.55h16.817l-1.471 25.382a.55.55 0 0 1-.55.518H6.357a.55.55 0 0 1-.548-.502L3.6 11.55Zm17.083-3 .576 1.9H2.74l.576-1.9h17.366ZM16.4 22.5a4.4 4.4 0 1 1-8.8 0 4.4 4.4 0 0 1 8.8 0Zm1.1 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0Z"
+                                                        fill="#000" fill-opacity=".58" />
+                                                </svg>
+                                            </template>
+                                        </div>
+                                        <p class="text-gray-900 text-base font-bold mt-2.5 text-center">Grande</p>
+                                        <p class="text-base text-gray-900 leading-none text-center">16 fl oz</p>
+                                    </div>
+                                    <div x-data @click="$store.selectSize.setSize('venti')" class="cup-item cursor-pointer"
+                                        :class="$store.selectSize.size==='venti' && 'active'" class="item">
+                                        <div class="icon flex justify-center">
+                                            <template x-if="$store.selectSize.size==='venti'">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path d="M2.91 4 2 7h20l-.91-3H2.91ZM21 7H3l2.27 29.983A1.1 1.1 0 0 0 6.369 38h12.02a1.1 1.1 0 0 0 1.1-1.044L21 7Z"
+                                                        fill="#fff" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.909 3.45a.55.55 0 0 0-.526.39l-.91 3A.55.55 0 0 0 2 7.55h.49l2.232 29.475a1.65 1.65 0 0 0 1.646 1.525h12.02a1.65 1.65 0 0 0 1.649-1.567L21.523 7.55H22a.55.55 0 0 0 .526-.71l-.909-3a.55.55 0 0 0-.526-.39H2.909Zm17.513 4.1H3.593L5.82 36.941a.55.55 0 0 0 .549.509h12.02a.55.55 0 0 0 .55-.522L20.422 7.55Zm.837-1.1-.576-1.9H3.317l-.576 1.9H21.26Z"
+                                                        fill="#000" />
+                                                    <circle cx="12" cy="20" r="5.45" fill="#00754A" stroke="#000" stroke-width="1.1" />
+                                                </svg>
+                                            </template>
+                                            <template x-if="$store.selectSize.size!=='venti'">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="40" fill="none">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M2.383 3.84a.55.55 0 0 1 .526-.39h18.182a.55.55 0 0 1 .526.39l.91 3a.55.55 0 0 1-.527.71h-.477l-1.486 29.433a1.65 1.65 0 0 1-1.648 1.567H6.368a1.65 1.65 0 0 1-1.646-1.525L2.49 7.55H2a.55.55 0 0 1-.526-.71l.909-3Zm1.21 3.71h16.829l-1.484 29.378a.55.55 0 0 1-.55.522H6.369a.55.55 0 0 1-.549-.509L3.593 7.55Zm17.09-3 .576 1.9H2.74l.576-1.9h17.366ZM16.9 20a4.9 4.9 0 1 1-9.8 0 4.9 4.9 0 0 1 9.8 0Zm1.1 0a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
+                                                        fill="#000" fill-opacity=".58" />
+                                                </svg>
+                                            </template>
+                                        </div>
+                                        <p class="text-gray-900 text-base font-bold mt-2.5 text-center">Venti</p>
+                                        <p class="text-base text-gray-900 leading-none text-center">24 fl oz</p>
+                                    </div>
+                                </div>
+                                <p class="box absolute left-0 top-0 hidden">suvo</p>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-2 items-center">
+                            <span>
+                                <svg aria-hidden="true" class="valign-middle color-black60 mr2" focusable="false" preserveAspectRatio="xMidYMid meet"
+                                    viewBox="0 0 24 24" style="width: 24px; height: 24px; overflow: visible; fill: currentcolor;">
+                                    <path
+                                        d="M11.508 19.22c-.667-.918-1.335-1.888-1.956-2.863-.432-.676-.826-1.33-1.175-1.956-1.037-1.857-1.617-3.357-1.617-4.308 0-2.984 2.297-5.31 5.24-5.31s5.24 2.326 5.24 5.31c0 .95-.58 2.45-1.617 4.31-.35.624-.743 1.28-1.175 1.955-.62.975-1.29 1.945-1.956 2.864-.174.24-.34.465-.492.67-.153-.205-.318-.43-.492-.67zm6.732-9.128c0-3.533-2.743-6.31-6.24-6.31-3.497 0-6.24 2.777-6.24 6.31 0 1.173.628 2.796 1.744 4.796.36.644.763 1.315 1.204 2.007.634.993 1.312 1.98 1.99 2.913.238.327.458.625.656.887l.252.33c.2.256.588.256.788 0l.252-.33c.198-.262.418-.56.656-.887.678-.934 1.356-1.92 1.99-2.913.44-.692.845-1.363 1.204-2.007 1.116-2 1.744-3.623 1.744-4.796z">
+                                    </path>
+                                    <path
+                                        d="M12 13.425c1.592 0 2.88-1.303 2.88-2.908s-1.288-2.91-2.88-2.91c-1.592 0-2.88 1.305-2.88 2.91 0 1.605 1.288 2.908 2.88 2.908zm0-1c-1.037 0-1.88-.853-1.88-1.908 0-1.056.843-1.91 1.88-1.91s1.88.854 1.88 1.91c0 1.055-.843 1.908-1.88 1.908z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span class="text-base text-p-color font-medium">Select a store to view availability</span>
+
+                        </div>
+                    </div>
+                    <div x-data="{ open: false }" class="size-option-wrapper flex-1 ml-[88px]">
+                        <h1 class="text-[24px] font-bold text-fun-900">Customizations</h1>
+                        <div class="w-[420px] h-1 bg-white-green mt-5 mb-10"></div>
+                        <div class="config-items w-[420px]">
+                            <div @click="open = !open" class="item w-full h-[115px] border border-[#00000066] rounded-[8px] py-[12px] px-[16px] relative cursor-pointer">
+                                <span class="item-title text-sm text-p-color absolute left-[16px] -top-2.5 bg-white inline-block z-10">Milk</span>
+                                <div class="w-full h-full flex flex-col justify-between">
+                                    <p class="text-[19px] text-[#000000DE] font-normal" x-text="$store.openMilkOpt.name"></p>
+                                    <p class="text-[19px] text-[#000000DE] font-normal" x-text="$store.openFoamOpt.name"></p>
+                                    <p class="text-[19px] text-[#000000DE] font-normal" x-text="$store.openTempOpt.name"></p>
+                                    
+                                </div>
+                                <span class="item-title text-[19px] text-[#000000DE] font-normal absolute right-[14px] bottom-[20px] inline-block z-10">Edit</span>
+                            </div>
+                        </div> 
+                        <div class="modal-container w-full h-screen">
+                            <template x-if="open">
+                                <div @click="open = !open" class="modal-overlay bg-black bg-opacity-30 fixed w-full fixed top-0 left-0 h-full">
+                                </div>
+                            </template>
+                        <template x-if="open">
+                            <div  class="modal-main-content w-3/5 h-full bg-white fixed right-0 top-0 z-10 overflow-y-scroll overflow-style-none">
+
+                                <div class="close-icon flex justify-end mr-[62px] mt-[30px] mb-[40px]">
+                                    <button @click="open = !open" type="button" class="sb-iconButton">
+                                        <svg aria-hidden="true" class="valign-middle absoluteCenter" focusable="false" preserveAspectRatio="xMidYMid meet"
+                                            viewBox="0 0 24 24" style="width: 24px; height: 24px; overflow: visible; fill: currentcolor;">
+                                            <path
+                                                d="M13.06 12l5.72-5.72c.292-.292.292-.767 0-1.06-.294-.293-.768-.293-1.06 0L12 10.94 6.28 5.22c-.293-.293-.767-.293-1.06 0-.293.293-.293.768 0 1.06L10.94 12l-5.72 5.72c-.293.292-.293.767 0 1.06.146.146.338.22.53.22s.384-.074.53-.22L12 13.06l5.72 5.72c.145.146.337.22.53.22.19 0 .383-.074.53-.22.292-.293.292-.768 0-1.06L13.06 12z">
+                                            </path>
+                                            <circle class="sb-icon-hover" cx="50%" cy="50%" fill="transparent" r="75%"></circle>
+                                        </svg>             
+                                    </button>
+                                </div>
+                                <div class="w-[626px] mx-auto">
+                                    <h1 class="text-[28px] font-bold text-gray-900 pb-[88px]">Milk</h1>
+                                    <div class="option-items">
+                                        <!-- milk option -->
+                                        <div class="option-item mb-[88px]">
+                                            <div class="option-title">
+                                                <p class="uppercase text-xs text-p-color border-b border-[#00000033] font-bold pb-[10px]">MILK OPTIONS</p>
+                                                <div :class="$store.openMilkOpt.open?'border-2 border-fun-500':'border border-[#00000066]'" class="w-full h-[50px] border border-[#00000066] rounded-[8px] py-[12px] relative cursor-pointer mt-[22px] relative">
+                                                    <div class="px-[16px]">
+                                                        <span :class="$store.openMilkOpt.open?'text-fun-500':'text-p-color'" class="item-title text-sm text-p-color absolute left-[16px] -top-2.5 bg-white inline-block z-10">Milk
+                                                            Options</span>
+                                                        <div @click="$store.openMilkOpt.open= !$store.openMilkOpt.open" class="w-full h-full flex justify-between items-center">
+                                                            <p class="text-[19px] text-[#000000DE] font-normal" x-text="$store.openMilkOpt.name"></p>
+                                                            <span class="text-[#000000DE]">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                                    stroke-width="2">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <template x-if="$store.openMilkOpt.open">
+                                                        <div class="w-full border border-[#00000066] rounded-[8px] p-2 absolute top-[50px] left-0 bg-white">
+                                                            <ul>
+                                                                <template x-for="option in $store.openMilkOpt.options">
+                                                                    <li x-text="option" class="text-[18px]" @click="$store.openMilkOpt.setOption(option)"></li>
+                                                                </template>
+                                                            </ul>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- MILK Foam -->
+                                        <div class="option-item mb-[88px]">
+                                            <div class="option-title">
+                                                <p class="uppercase text-xs text-p-color border-b border-[#00000033] font-bold pb-[10px]">MILK TEMPERATURE</p>
+                                                <div :class="$store.openFoamOpt.open?'border-2 border-fun-500':'border border-[#00000066]'"
+                                                    class="w-full h-[50px] rounded-[8px] py-[12px] relative cursor-pointer mt-[22px] relative">
+                                                    <div class="px-[16px]">
+                                                        <span :class="$store.openFoamOpt.open?'text-fun-500':'text-p-color'"
+                                                            class="item-title text-sm absolute left-[16px] -top-2.5 bg-white inline-block z-10">MILK TEMPERATURE</span>
+                                                        <div @click="$store.openFoamOpt.open= !$store.openFoamOpt.open"
+                                                            class="w-full h-full flex justify-between items-center">
+                                                            <p class="text-[19px] text-[#000000DE] font-normal" x-text="$store.openFoamOpt.name"></p>
+                                                            <span class="text-[#000000DE]">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor" stroke-width="2">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <template x-if="$store.openFoamOpt.open">
+                                                        <div class="w-full border border-[#00000066] rounded-[8px] p-2 absolute top-[50px] left-0 bg-white">
+                                                            <ul>
+                                                                <template x-for="option in $store.openFoamOpt.options">
+                                                                    <li x-text="option" class="text-[18px]" @click="$store.openFoamOpt.setOption(option)"></li>
+                                                                </template>
+                                                            </ul>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- MILK TEMPERATURE -->
+                                        <div class="option-item mb-[88px]">
+                                            <div class="option-title">
+                                                <p class="uppercase text-xs text-p-color border-b border-[#00000033] font-bold pb-[10px]">MILK TEMPERATURE</p>
+                                                <div :class="$store.openTempOpt.open?'border-2 border-fun-500':'border border-[#00000066]'"
+                                                    class="w-full h-[50px] rounded-[8px] py-[12px] relative cursor-pointer mt-[22px] relative">
+                                                    <div class="px-[16px]">
+                                                        <span :class="$store.openTempOpt.open?'text-fun-500':'text-p-color'"
+                                                            class="item-title text-sm text-p-color absolute left-[16px] -top-2.5 bg-white inline-block z-10">MILK
+                                                            TEMPERATURE</span>
+                                                        <div @click="$store.openTempOpt.open= !$store.openTempOpt.open"
+                                                            class="w-full h-full flex justify-between items-center">
+                                                            <p class="text-[19px] text-[#000000DE] font-normal" x-text="$store.openTempOpt.name"></p>
+                                                            <span class="text-[#000000DE]">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                                                    stroke="currentColor" stroke-width="2">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                                                </svg>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <template x-if="$store.openTempOpt.open">
+                                                        <div class="w-full border border-[#00000066] rounded-[8px] p-2 absolute top-[50px] left-0 bg-white">
+                                                            <ul>
+                                                                <template x-for="option in $store.openTempOpt.options">
+                                                                    <li x-text="option" class="text-[18px]" @click="$store.openTempOpt.setOption(option)"></li>
+                                                                </template>
+                                                            </ul>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+    </div>
+    <!-- script -->
+    <script src="./assets/js/main.js" type="text/javascript"></script>
+</body>
+</html>

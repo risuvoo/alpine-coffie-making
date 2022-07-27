@@ -1,0 +1,37 @@
+/* @import url(//db.onlinewebfonts.com/c/d7e8a95865396cddca89b00080d2cba6?family=SoDo+Sans+SemiBold); */
+
+*{
+    margin: 0;
+    padding:0;
+}
+body{
+    /* font-family: "SoDo Sans SemiBold"; */
+}
+.sb-iconButton:hover .sb-icon-hover {
+    fill: currentColor;
+    transform: scale(1);
+}
+.sb-iconButton .sb-icon-hover {
+    fill: transparent;
+    opacity: .1;
+    transform: scale(.4);
+    transform-origin: center;
+    transition: all .2s ease-out;
+}
+.overflow-style-none::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+
+.overflow-style-none {
+
+    -ms-overflow-style: none;
+    /* IE and Edge */
+
+    scrollbar-width: none;
+    /* Firefox */
+
+}
